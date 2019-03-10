@@ -84,13 +84,18 @@ Module.register("MMM-EARTH", {
                 this.activeItem = 0;
             }
             const earth = this.earth[earthKeys[this.activeItem]];
-
+//			console.log("We are in creating the image");
+//			console.log(this.activeItem);
+//			console.log(earth) ;
+			
             const earthImg = earth.image;
 
-            const slicer = earth.date.slice(0, 10);
-            const parts = slicer.split("-");
-            //      var daily = parts[2]+"/"+this.config.MonthsArray[parts[1]]+"/"+parts[0]; // NASA changed data/date format
-            const daily = parts[0] + "/" + parts[1] + "/" + parts[2]; // NASA changed data/date format AGAIN!
+            //const slicer = earth.date.slice(0, 10);
+            //const parts = slicer.split("-");
+			const ident = earth.identifier;
+			const daily = ident.slice(0,4) + "/" + ident.slice(4,6) + "/" + ident.slice(6,8); 
+//			console.log(ident);
+//			console.log(daily);
 
                 earthPhoto.classList.add("photo");
             if (this.config.mode == "Natural") {
@@ -147,7 +152,8 @@ Module.register("MMM-EARTH", {
     processEARTH: function(data) {
         this.today = data.Today;
         this.earth = data;
-        //    console.log(this.earth); // for checking in dev console
+//		console.log("WE ARE IN processEARTH") ; 
+//        console.log(this.earth); // for checking in dev console
         this.loaded = true;
     },
 
